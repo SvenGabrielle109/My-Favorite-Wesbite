@@ -160,11 +160,15 @@
         .fav-card ul {
             list-style: upper-roman;
             font-size: 1.05rem;
+            color: #6368cf;
+            font-weight: bold;
         }
 
         .fav-card .sub-list {
             list-style: upper-latin;
             font-size: 0.95rem;
+            color: #6368cf;
+            font-weight: bold;
         }
 
         @media (max-width: 768px) {
@@ -212,51 +216,46 @@
             <h2 class="text-center">My Favorite Things</h2>
             
             <br>
-            <h1 class="favorites-grid" aria-label="favorite columns">
-            <div class="fav-card">
-                <h3>Favorite Food</h3>
+            <div class="favorites-grid" aria-label="favorite columns">
+                <div class="fav-card">
+                    <h3>Favorite Food</h3>
                     <ul>
                         <li>Pizza</li>
-                        <ul class="sub-list">
-                            <li>Cheese Pizza</li>
-                            <li>Spinach Pizza</li>
-                            <li>New York White Pizza</li>
-                        </ul>
+                            <ul class="sub-list">
+                                <li>Cheese Pizza</li>
+                                <li>Spinach Pizza</li>
+                                <li>New York White Pizza</li>
+                            </ul>
                         <li>Ice Cream</li>
-                        <ul class="sub-list">
-                            <li>Vanilla</li>
-                            <li>Cookies & Cream</li>
-                        </ul>
-                        <li>Pork Tonkatsu & Beef Gyudon</li>
-                        <li>Cheesy Ramen</li>
+                            <ul class="sub-list">
+                                <li>Vanilla</li>
+                                <li>Cookies & Cream</li>
+                            </ul>
                         <li>Pasta</li>
-                        <ul class="sub-list">
-                            <li>Classical Spaghetti</li>
-                            <li>Carbonara</li>
-                        </ul>
-                        <li>Starbucks</li>
-                        <ul class="sub-list">
-                            <li>Original Drink</li>
-                            <li>Customized Drink</li>
-                        </ul>
+                            <ul class="sub-list">
+                                <li>Classical Spaghetti</li>
+                                <li>Carbonara</li>
+                            </ul>
+                        <li>Coffee Drinks</li>
+                            <ul class="sub-list">
+                                <li>Original Drink</li>
+                                <li>Customized Drink</li>
+                            </ul>
                     </ul>
-            </div>
-            <div class="fav-card">
-                <h3>Favorite Color</h3>
-                <ul>
-                    <li>Pink</li>
-                    <li>Purple</li>
-                    <li>Cyan</li>
-                    <li>White</li>
-                </ul>
                 </div>
+                <div class="fav-card">
+                    <h3>Favorite Color</h3>
+                    <ul>
+                        <li>Pink</li>
+                    </ul>
+                </div>
+
                 <div class="fav-card">
                     <h3>Favorite Movie</h3>
                     <ul>
                         <li>The Princess Diaries</li>
                     </ul>
                 </div>
-            </div>
         </div>
     </main>
 
