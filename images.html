@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://pyscript.net/releases/2025.7.3/core.css">
+    <script type="module" src="https://pyscript.net/releases/2025.7.3/core.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>My Favorite Website</title>
+    <style>
+        :root{
+            --border-size: 2px;
+        }
+
+        body {
+           font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+           background-color: #d2bcff;
+           margin: 0;
+           padding: 20px;
+        }
+        
+        .container{
+           display: flex;
+           flex-direction: column;
+           align-items: center;
+           background-color: #fed7ff;
+           border-radius: 10px;
+           padding: 20px;
+        }
+        
+        h1, .container h2, .fav-card h3 {
+           color: #6368cf;
+           font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+           text-align: center;
+           font-weight: bolder;
+        }
+      
+        input[type="button"] {
+           background: linear-gradient(to right, red,yellow,green,blue);
+           color: white;
+           padding: 10px 20px;
+           border: none;
+           border-radius: 4px;
+           cursor: pointer;
+           font-size: 16px;
+        }
+        
+        nav{
+           background-color: #ffffff;
+        }
+
+        nav.navbar {
+           background: linear-gradient(90deg, rgb(229, 176, 255), rgba(230, 180, 255, 0.809));
+           padding: 0.5rem 1rem;
+           border-radius: 12px;
+           box-shadow: 0 8px 30px rgb(57, 9, 82);
+           backdrop-filter: blur(6px);
+        }
+
+       .container-fluid {
+           max-width: 1100px;
+           margin: 0 auto;
+        }
+
+       .navbar-brand {
+           color: #810b83f8;
+           font-weight: 700;
+           letter-spacing: 0.2px;
+           font-size: 1.05rem;
+           padding-left: 0.25rem;
+        }
+
+       .navbar-brand:hover {
+           color: #810b83f8;
+           text-decoration: none;
+        }
+
+       .navbar-nav .nav-link {
+           color: #810b83f8;
+           font-weight: 600;
+           margin: 0 0.25rem;
+           padding: 0.45rem 0.7rem;
+           border-radius: 8px;
+           transition: transform .18s ease, box-shadow .18s ease, color .18s ease;
+           position: relative;
+        }
+
+       .navbar-nav .nav-link::after {
+           content: "";
+           position: absolute;
+           left: 12%;
+           right: 12%;
+           bottom: 6px;
+           height: 3px;
+           background: transparent;
+           border-radius: 3px;
+           transition: width .18s ease, background .18s ease;
+           width: 0%;
+        }
+
+       .navbar-nav .nav-link:hover {
+           color: #fff;
+           transform: translateY(-3px);
+           border: 1px solid rgba(255, 255, 255, 0.12);
+           background-image: linear-gradient(90deg,#febfff,#fd80ff);
+        }
+
+       .navbar-nav .nav-link:hover::after {
+           width: 76%;
+           background: rgba(255,255,255,0.18);
+        }
+
+       .navbar-nav .nav-link.active,
+       .navbar-nav .nav-link[aria-current="page"] {
+           color: #fff !important;
+           background-image: linear-gradient(90deg,#febfff,#fd80ff);
+           box-shadow: 0 8px 18px rgba(255,255,255,0.18);
+        }
+
+       .navbar-toggler {
+           border: 1px solid rgba(255, 255, 255, 0.18);
+           border-radius: 8px;
+           padding: 0.25rem 0.45rem;
+        }
+
+       @media (max-width: 991px) {
+           nav.navbar {
+               padding: 0.4rem;
+            }
+           .navbar-nav {
+               background: #4684ffc0;
+               border-radius: 8px;
+               padding: 0.5rem;
+            }
+        }
+        
+        .favorites-grid{
+           display: grid;
+           gap: 10px; /* smaller gap between cards */
+           grid-template-columns: repeat(4, minmax(180px, 1fr)); /* smaller minimum column size */
+           align-items: start;
+           margin-top: 12px;
+           margin-left: auto;
+           margin-right: auto;
+           width: 100%;
+           max-width: 1200px; /* reduce overall max width so columns stay smaller */
+        }
+
+        .fav-card{
+            grid-template-columns: repeat(4, minmax(180px, 1fr)); /* smaller minimum column size */
+            align-items: start;
+            margin-top: 12px;
+            margin-left: auto;
+            margin-right: auto;
+            width: 100%;
+            max-width: 1200px; /* reduce overall max width so columns stay smaller */
+        }
+
+        .fav-card{
+            background: linear-gradient(18deg, #ffff,#fff8fb);
+            padding: 14px; /* slightly reduced padding to fit smaller columns */
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(57,9,82,.06);
+            text-align: left;
+            width: 100%;
+            background: linear-gradient(18deg, #ffff,#fff8fb);
+            padding: 14px; /* slightly reduced padding to fit smaller columns */
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(57,9,82,.06);
+            text-align: left;
+            width: 100%;
+            box-sizing: border-box;
+            border: calc(var(--border-size) / 1) solid rgba(123,63,228,0.12);
+        }
+
+        @media (max-width: 768px) {
+            .fav-card {max-width: 100%;}
+            .favorites-grid {grid-template-columns: 1fr; max-width: 720px; gap: 10px;}
+            .fav-card {max-width: 100%;}
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px){
+            .favorites-grid {grid-template-columns: repeat(2, minmax(180px, 1fr)); max-width: 1100px; gap: 12px;}
+        }
+
+        @media (min-width: 1025px) and (max-width: 1400px){
+            .favorites-grid {grid-template-columns: repeat(3, minmax(180px, 1fr)); max-width: 1300px; gap: 12px;}
+            .favorites-grid { grid-template-columns: repeat(3, minmax(180px, 1fr)); max-width: 1300px; gap: 12px; }
+        }
+
+        .fav-card h3{
+            color: #6b4bd8;
+            margin: 0 0 8px 0;
+            font-size: 1.05rem;
+            font-weight: bold;
+        }
+
+        .fav-card p {
+            margin: 0 0 8px 20px;
+            padding: 0;
+            text-align: center;
+            list-style: upper-roman;
+            font-size: 1.05rem;
+            color: #6368cf;
+            font-weight: bold;
+        }
+
+        .fav-card a,
+        .fav-card p a {
+            color: #7b3fe4;
+            text-decoration: none;
+            border-bottom: 2px dashed rgba(123,63,228,0.18);
+            padding-bottom: 2px;
+            transition: color .18s ease, border-color .18s ease, transform .12s ease, background .18s ease;
+            border-radius: 3px;
+        }
+
+        .fav-card a:hover,
+        .fav-card p a:hover {
+            color: #ffffff;
+            background-image: linear-gradient(90deg,#febfff,#fd80ff);
+            border-bottom-color: transparent;
+            transform: translateY(-2px);
+        }
+
+        .fav-card a:focus,
+        .fav-card p a:focus {
+            outline: 3px solid rgba(123,63,228,0.16);
+            outline-offset: 3px;
+        }
+
+        .fav-card ul{
+            margin: 0 0 8px 0;
+            padding-left: 2.1rem; /* move list text away from the card border */
+            list-style: upper-roman;
+            list-style-position: outside;
+            font-size: 1.05rem;
+            color: #6368cf;
+            font-weight: bold;
+            margin: 0 0 8px 0;
+            padding-left: 2.1rem; /* move list text away from the card border */
+            list-style: upper-roman;
+            list-style-position: outside;
+            font-size: 1.05rem;
+            color: #6368cf;
+            font-weight: bold;
+        }
+
+        .fav-card .sub-list {
+            list-style: upper-latin;
+            font-size: 0.95rem;
+            color: #6368cf;
+            font-weight: bold;
+            padding-left: 2.1rem; /* match spacing for sub-lists */
+            margin-left: 0.25rem;
+        }
+
+        .fav-card li {
+            margin-bottom: 6px; /* a bit of vertical spacing between items */
+        }
+   </style>
+</head>
+<body>
+    <h1 class="text-center">My Favorite Website</h1> 
+    <nav class="navbar navbar-expand-lg navbar-light mb-4">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Music Page</a>
+            <button class="navbar-toggler" type="button" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="mainNavbar">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link active" href="music.html">Music</a></li>
+                <li class="nav-item"><a class="nav-link active" href="games.html">Games</a></li>
+                <li class="nav-item"><a class="nav-link active" href="images.html">Images</a></li>
+            </ul>
+            </div>
+        </div>
+    </nav>
+
+    <br>
+
+    <main>
+        <div class="container">
+            <h2 class="text-center">My Favorite Games</h2>
+            
+            <br>
+            <h1 class="favorites-grid" aria-label="favorite columns">
+            <div class="fav-card">
+                <p style="text-align: left;">1. <a href="https://www.roblox.com/home" target="_blank">Roblox</a></p>
+                <center>
+                    <img src="Roblox_Logo.png" alt="Roblox Logo" style="width:100%; border-radius: 8px; margin-top: 8px;">
+                </center>
+            </div>
+            <div class="fav-card">
+                <p style="text-align: left;">2. <a href="https://www.cookierun-kingdom.com/en/" target="_blank">Cookie Run Kingdom</a></p>
+                <center>
+                    <img src="Cookie-Run-Kingdom_Logo.webp" alt="Cookie Run Kingdom Logo" style="width:100%; border-radius: 8px; margin-top: 8px;">
+                </center>
+            </div>
+            <div class="fav-card">
+                <p style="text-align: left;">3. <a href="https://genshin.hoyoverse.com/en/home" target="_blank">Genshin Impact</a></p>
+                <center>
+                    <img src="Genshin-Impact_Logo.webp" alt="Genshin Impact Logo" style="width:100%; border-radius: 8px; margin-top: 8px;">
+                </center>
+            </div>
+            <div class="fav-card">
+                <p style="text-align: left;">3. <a href="https://genshin.hoyoverse.com/en/home" target="_blank">Honkai: Star Rail</a></p>
+                <center>
+                    <img src="Honkai-Star-Rail_Logo.webp" alt="Honkai: Star Rail Logo" style="width:100%; border-radius: 8px; margin-top: 8px;">
+                </center>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
